@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Query\SelectQuery;
+use Command\SelectCommand;
+
+echo "Enter SELECT query: ";
+$handle = fopen ("php://stdin","r");
+$line = fgets($handle);
+if(trim($line) != 'yes') {
+    $query = new SelectQuery($line);
+    $command = new SelectCommand($query);
+    $command->execute();
+    exit;
+}
+fclose($handle);
+echo "\n";
+echo "Thank you, continuing...\n";
