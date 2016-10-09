@@ -40,12 +40,12 @@ class SelectQueryParser implements QueryParserInterface
     private $sort;
 
     /**
-     * @var string
+     * @var integer
      */
     private $skip;
 
     /**
-     * @var string
+     * @var integer
      */
     private $limit;
 
@@ -101,7 +101,7 @@ class SelectQueryParser implements QueryParserInterface
 
 
     /**
-     * @return string
+     * @return integer
      */
     public function getSkip()
     {
@@ -109,7 +109,7 @@ class SelectQueryParser implements QueryParserInterface
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getLimit()
     {
@@ -219,7 +219,7 @@ class SelectQueryParser implements QueryParserInterface
 
     /**
      * @param string $skip
-     * @return string
+     * @return integer
      */
     private function parseSkip($skip)
     {
@@ -228,7 +228,7 @@ class SelectQueryParser implements QueryParserInterface
 
     /**
      * @param string $limit
-     * @return string
+     * @return integer
      */
     private function parseLimit($limit)
     {
