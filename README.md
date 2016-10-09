@@ -18,9 +18,9 @@ $ php mongo
 After that you can enter SELECT query.
 
 The query must be like this:
-
+```sql
 SELECT firstname, lastname, email FROM users WHERE firstname = 'Volodymyr' OR firstname = '111111' GROUP BY none ORDER BY email ASC SKIP 2 LIMIT 10
-
+```
 Run test:
 --------------
 Open a terminal window, go to project folder and run following command:
