@@ -10,10 +10,11 @@ class DatabaseConnectionTest extends TestCase
 
     public function testConnection()
     {
-        $this->expectException(\MongoDB\Driver\Exception\InvalidArgumentException::class);
-        $this->expectException(\MongoDB\Driver\Exception\RuntimeException::class);
-
-        Manager::getInstance();
+        try {
+            Manager::getInstance();
+        } catch (\Exception $e) {
+            $this->fail($e->getMessage());
+        }
     }
 
 }
