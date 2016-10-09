@@ -8,7 +8,7 @@ use Query\SelectQuery;
 class SelectQueryTest extends TestCase
 {
 
-    public function testProjection()
+    public function testParser()
     {
         $this->expectException(\InvalidArgumentException::class);
 
