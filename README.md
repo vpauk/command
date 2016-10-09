@@ -11,7 +11,9 @@ Run application:
 
 Open a terminal window, go to project folder and run following command:
 
+```shell
 $ php mongo
+```
 
 After that you can enter SELECT query.
 
@@ -23,6 +25,8 @@ Run test:
 --------------
 Open a terminal window, go to project folder and run following command:
 
+```shell
 $ phpunit
+```
 
 
