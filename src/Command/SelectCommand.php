@@ -22,14 +22,17 @@ class SelectCommand implements CommandInterface
 
     public function execute()
     {
-        $rows = $this->query->execute();
-
-        if (count($rows)) {
-            foreach ($rows as $row) {
-                echo json_encode((array)$row) . "\n";
+        try {
+            $rows = $this->query->execute();
+            if (count($rows)) {
+                foreach ($rows as $row) {
+                    echo json_encode((array)$row) . "\n";
+                }
+            } else {
+                echo "Nothing found!\n";
             }
-        } else {
-            echo "Nothing found!\n";
+        } catch (\Exception $e) {
+            echo 'Caught exception: ', $e->getMessage(), "\n";
         }
     }
 }
