@@ -6,11 +6,11 @@ namespace Config;
 class Config
 {
     private static $params = [
-        'name' => 'daenerys',
-        'host' => '127.0.0.1',
-        'port' => '27017',
-        'user' => null,
-        'password' => null
+        'name' => 'daenerys',  // Database name
+        'host' => '127.0.0.1', // Database host
+        'port' => '27017',     // Database pot
+        'user' => null,        // Database user
+        'password' => null     // Database user password
     ];
 
     /**
