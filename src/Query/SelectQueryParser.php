@@ -123,15 +123,15 @@ class SelectQueryParser implements QueryParserInterface
      */
     public function parse()
     {
-        if (!preg_match('/SELECT\s+(.+)\s+FROM\s+(.+)\s+WHERE\s*(.+)\s+GROUP\s+BY\s+(.+)\s+ORDER\s+BY\s*(.+)\s*[ASC|DESC]*\s*SKIP\s+(\d+)\s+LIMIT\s+(\d+)/i', $this->queryString, $matches)) {
+        if (!preg_match('/SELECT\s+(.+)\s+FROM\s+(.+)\s+WHERE\s+(.+)\s+GROUP\s+BY\s+(.+)\s+ORDER\s+BY\s+(.+)\s+([ASC|DESC]+)\s+SKIP\s+(\d+)\s+LIMIT\s+(\d+)/i', $this->queryString, $matches)) {
             throw new \InvalidArgumentException('Can not parse query!');
         }
         $this->projection = $this->parseProjection($matches[1]);
         $this->target = $this->parseTarget($matches[2]);
         $this->condition = $this->parseCondition($matches[3]);
-        $this->sort = $this->parseSort($matches[5]);
-        $this->skip = $this->parseSkip($matches[6]);
-        $this->limit = $this->parseLimit($matches[7]);
+        $this->sort = $this->parseSort($matches[5], $matches[6]);
+        $this->skip = $this->parseSkip($matches[7]);
+        $this->limit = $this->parseLimit($matches[8]);
 
         return $this;
     }
@@ -200,15 +200,14 @@ class SelectQueryParser implements QueryParserInterface
     }
 
     /**
-     * @param string $sort
+     * @param string $field
+     * @param string $direction
      * @return array
      */
-    private function parseSort($sort)
+    private function parseSort($field, $direction)
     {
-        $result  = [];
-        $parts = explode(' ', $sort);
-        $field = trim($parts[0]);
-        $direction = trim($parts[1]);
+        $field = trim($field);
+        $direction = trim($direction);
         if ($direction == self::ORDER_ASC) {
             $result[$field] = 1;
         } else {
