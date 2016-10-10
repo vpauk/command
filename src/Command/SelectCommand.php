@@ -24,11 +24,12 @@ class SelectCommand implements CommandInterface
     {
         try {
             $rows = $this->query->execute();
-            if (count($rows)) {
-                foreach ($rows as $row) {
-                    echo json_encode((array)$row) . "\n";
-                }
-            } else {
+            $i = 0;
+            foreach ($rows as $row) {
+                echo json_encode((array)$row) . "\n";
+                $i++;
+            }
+            if ($i === 0) {
                 echo "Nothing found!\n";
             }
         } catch (\Exception $e) {
